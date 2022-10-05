@@ -24,4 +24,28 @@ class ApiController extends AbstractController
         }
         return new JsonResponse($TabSeries);
     }
+
+    #[Route('/api/series/{id}', name: 'app_api_series_id')]
+    public function getUneSerie(PdoFouDeSerie $pdoFouDeSerie, $id): Response
+    {
+        $uneSerie = $pdoFouDeSerie->getUneSerie($id);
+        if($uneSerie)
+        {
+            dump($uneSerie);
+        $TabSerie = [
+            'id' => $uneSerie['id'],
+            'titre' => $uneSerie['titre'],
+            'resume' => $uneSerie['resume'],
+            'duree' => $uneSerie['duree']
+            
+        ];
+        return new JsonResponse($TabSerie);
+        }
+        else
+        {
+            return new JsonResponse(['message' => 'Serie inexistante'], 404);
+        }
+    }
+
+    
 }
