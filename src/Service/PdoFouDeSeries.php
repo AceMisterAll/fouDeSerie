@@ -30,11 +30,46 @@ class PdoFouDeSerie {
         $uneSerie = $res->fetch();
         return $uneSerie;
     }
-    public function createUneSerie($id, $title)
+    public function setLaSerie($laserie)
     {
-        $res = PdoFouDeSerie::$monPdo->prepare('INSERT INTO serie (id, titre) VALUES (:id, :titre)');
-        $res->execute(['id' => $id, 'titre' => $title]);
-        $uneSerie = $res->fetch();
-        return $uneSerie;
+        $req = "INSERT INTO serie (titre, resume, duree, premiereDiffusion, image) VALUES (:titre, :resume, :duree, :premiereDiffusion, :image)";
+        $res = PdoFouDeSerie::$monPdo->prepare($req);
+        $res->bindValue(':titre', $laserie['titre'], PDO::PARAM_STR);
+        $res->bindValue(':resume', $laserie['resume'], PDO::PARAM_STR);
+        $res->bindValue(':duree', $laserie['duree'], PDO::PARAM_INT);
+        $res->bindValue(':premiereDiffusion', $laserie['premiereDiffusion'], PDO::PARAM_STR);
+        $res->bindValue(':image', $laserie['image'], PDO::PARAM_STR);
+        $res->execute();
+
+        $req1 = "SELECT * FROM serie WHERE id=LAST_INSERT_ID()";
+        $res1 = PdoFouDeSerie::$monPdo->prepare($req1);
+        $res1->execute();
+        $laLigne = $res1->fetch();
+        return $laLigne;
+    }
+    public function deleteSerie($id)
+    {
+        $req = "DELETE FROM serie WHERE id = :id";
+        $res = PdoFouDeSerie::$monPdo->prepare($req);
+        $res->bindValue(':id', $id, PDO::PARAM_INT);
+        $res->execute();
+    }
+    public function updateSerieComplete($id, $laserie)
+    {
+        $req = "UPDATE serie SET titre = :titre, resume = :resume, duree = :duree, premiereDiffusion = :premiereDiffusion, image = :image WHERE id = :id";
+        $res = PdoFouDeSerie::$monPdo->prepare($req);
+        $res->bindParam(':id', $id, PDO::PARAM_INT);
+        $res->bindParam(':titre', $laserie['titre'], PDO::PARAM_STR);
+        $res->bindParam(':resume', $laserie['resume'], PDO::PARAM_STR);
+        $res->bindParam(':duree', $laserie['duree'], PDO::PARAM_INT);
+        $res->bindParam(':premiereDiffusion', $laserie['premiereDiffusion'], PDO::PARAM_STR);
+        $res->bindParam(':image', $laserie['image'], PDO::PARAM_STR);
+        $res->execute();
+        $req1 = "SELECT * FROM serie WHERE id=:id";
+        $res1 = PdoFouDeSerie::$monPdo->prepare($req1);
+        $res1->bindParam(':id', $id, PDO::PARAM_INT);
+        $res1->execute();
+        $laLigne = $res1->fetch();
+        return $laLigne;
     }
 }
