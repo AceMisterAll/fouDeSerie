@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+			{% dump(Serie) %}
+
+				<div class="card" style="width: 18rem;">
+					<img src="{{ Serie.Image }}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">{{ Serie.Titre|upper}}</h5>
+						<p class="card-text">{{ Serie.Resume }}</p>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">{{ Serie.Duree|date("H:m:s") }}</li>
+						<li class="list-group-item">{{ Serie.premiereDiffusion|date("d/m/Y") }}</li>
+					</ul>
+				</div>
+
+	</div>
+
+
+	{% endblock %}
