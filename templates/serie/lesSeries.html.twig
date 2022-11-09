@@ -14,18 +14,19 @@
    margin: 10px;
 }
 </style>
-<h2>Affichage des {{ nbSeries }} series</h2>
 	<div class="container">
 			{% for uneserie in lesSeries %}
 				<div class="card" style="width: 18rem;">
-					<img src="{{ uneserie.image }}" class="card-img-top" alt="...">
+				<a href="{{path('app_detailSerie',{id :uneserie.id})}}">
+					<img src="{{ uneserie.image }}" class="card-img-top">
+				</a>
 					<div class="card-body">
 						<h5 class="card-title">{{ uneserie.titre|upper}}</h5>
 						<p class="card-text">{{ uneserie.resume }}</p>
 					</div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">{{ uneserie.duree|date("d/m/Y") }}</li>
-						<li class="list-group-item">{{ uneserie.premiereDiffusion }}</li>
+						<li class="list-group-item">{{ uneserie.premiereDiffusion|date("d/m/y") }}</li>
 					</ul>
 				</div>
 

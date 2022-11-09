@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+				<img src="{{ laSerie.image }}" class="card-img-top">
+				<div class="card-body">
+				<h5 class="card-title">{{ laSerie.titre|upper}}</h5>
+				<p class="card-text">{{ laSerie.resume }}</p>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">{{ laSerie.duree|date("d/m/Y") }}</li>
+					<li class="list-group-item">{{ laSerie.premiereDiffusion|date("d/m/y") }}</li>
+				</ul>
+
+{% endblock %}
