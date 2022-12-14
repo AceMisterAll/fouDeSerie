@@ -23,7 +23,7 @@ class SerieController extends AbstractController
     //    ]);
     //}
 
-    #[Route('/serie', name: 'app_serie')]
+    #[Route('/serie', name: 'app_series')]
     public function showSerie(ManagerRegistry $doctrine): Response
     {
         $Repository = $doctrine->getRepository(Serie::class);

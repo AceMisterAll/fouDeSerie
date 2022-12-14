@@ -31,7 +31,7 @@ class HomeController extends AbstractController
         $Serie->setResume("Naruto est un shōnen manga écrit et dessiné par Masashi Kishimoto. Naruto a été prépublié dans l'hebdomadaire Weekly Shōnen Jump de l'éditeur Shūeisha entre septembre 1999 et novembre 2014. La série a été compilée en 72 tomes. La version française du manga est publiée par Kana entre mars 2002 et novembre 2016.");
         $Serie->setDuree(new \DateTime('12:56:15'));
         $Serie->setPremiereDiffusion(new \DateTime('1999-09-21'));
-        $Serie->setImage('https://tinyurl.com/2s3r79p9');
+        $Serie->setImage('https://lc.cx/uMopid');
 
         $entityManager = $doctrine->getManager();
         // On persiste l'entité

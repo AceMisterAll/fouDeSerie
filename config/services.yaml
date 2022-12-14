@@ -30,6 +30,6 @@ services:
         class: App\Service\PdoFouDeSerie
         arguments:
             $server: 'mysql:host=127.0.0.1:3307'
-            $bdd: 'dbname=achiron-foudeserie'
+            $bdd: 'dbname=dbHackathon'
             $user: 'root'
             $mdp: ''
