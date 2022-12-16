@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+<style>
+
+.container {
+   display: flex;
+   justify-content: space-between;
+}
+.card {
+   margin: 10px;
+}
+</style>
+	<div class="container">
+			{% for uneserie in lesSeries %}
+				<div class="card" style="width: 18rem;">
+					<img src="{{ uneserie.image }}" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">{{ uneserie.titre|upper}}</h5>
+                        <a type="button" class="btn btn-primary" value="Supprimer" href="{{ path('app_admin_suppSerie', {'id': uneserie.id, 'token':csrf_token('delete_serie') }) }}'">Supprimer</a>
+						<form method='POST' action="{{ path('app_admin_suppSerie', {'id': uneserie.id,})}}">
+							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="token" value="{{ csrf_token('delete_serie') }}">
+							<button class="btn btn-primary">Supprimer</button>
+						</form>
+					</div>
+				</div>
+
+			{% endfor %}
+	</div>
+{% endblock %}

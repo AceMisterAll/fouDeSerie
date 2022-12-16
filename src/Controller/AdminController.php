@@ -12,6 +12,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
+    #[Route('/admin/serie/all', name: 'app_admin_listSeries')]
+    public function suppSerie(ManagerRegistry $doctrine): Response
+    {
+        $Repository = $doctrine->getRepository(Serie::class);
+        $lesSeries = $Repository->findAll();
+        dump($lesSeries);
+        return $this->render('admin/listSeries.html.twig', [
+            'lesSeries' => $lesSeries,
+        ]);
+    }
+    
+    #[Route('/admin/serie/{id}', name: 'app_admin_suppSerie', methods: 'DELETE')]
+    public function suppSerieId($id,Request $request, ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $repository = $em->getRepository(Serie::class);
+        $serie=$repository->find($id);
+        if ($this->isCsrfTokenValid('delete_serie', $request->get('token')))
+        {
+            $em->remove($serie);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('app_admin_listSeries');
+    }
+
     #[Route('/admin/serie', name: 'app_admin_addSerie')]
     public function addSerie(Request $request, ManagerRegistry $Doctrine): Response
     {
@@ -56,10 +82,9 @@ class AdminController extends AbstractController
             $EntityManager->flush(); // ajoute dans la bdd
             return $this->redirectToRoute('app_series'); //redirige sur la page des series
         }
-
-
         return $this->render('admin/editeSerie.html.twig', [
             'form' => $form->createView(),
         ]);
+
     }
 }
