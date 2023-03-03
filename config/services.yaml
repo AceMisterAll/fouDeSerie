@@ -29,7 +29,7 @@ services:
     service_pdo:
         class: App\Service\PdoFouDeSerie
         arguments:
-            $server: 'mysql:host=127.0.0.1:3307'
-            $bdd: 'dbname=achiron-foudeserie'
+            $server: 'mysql:host=127.0.0.1:3306'
+            $bdd: 'dbname=bdfoudeseries'
             $user: 'root'
             $mdp: ''
