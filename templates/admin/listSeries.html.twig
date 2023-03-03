@@ -7,8 +7,9 @@
 <style>
 
 .container {
-   display: flex;
-   justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 .card {
    margin: 10px;
@@ -20,7 +21,7 @@
 					<img src="{{ uneserie.image }}" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">{{ uneserie.titre|upper}}</h5>
-                        <a type="button" class="btn btn-primary" value="Supprimer" href="{{ path('app_admin_suppSerie', {'id': uneserie.id, 'token':csrf_token('delete_serie') }) }}'">Supprimer</a>
+                        <a type="button" class="btn btn-primary" value="Supprimer" href="{{ path('app_admin_suppSerie', {'id': uneserie.id, 'token':csrf_token('delete_serie') }) }}'">Modifier</a>
 						<form method='POST' action="{{ path('app_admin_suppSerie', {'id': uneserie.id,})}}">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="token" value="{{ csrf_token('delete_serie') }}">
