@@ -32,6 +32,7 @@ class HomeController extends AbstractController
         $Serie->setDuree(new \DateTime('12:56:15'));
         $Serie->setPremiereDiffusion(new \DateTime('1999-09-21'));
         $Serie->setImage('https://lc.cx/uMopid');
+        $Serie->setNblike(0);
 
         $entityManager = $doctrine->getManager();
         // On persiste l'entité

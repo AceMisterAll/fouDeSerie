@@ -38,7 +38,6 @@ class ApiController extends AbstractController
                 'titre' => $uneSerie['titre'],
                 'resume' => $uneSerie['resume'],
                 'duree' => $uneSerie['duree']
-
             ];
             return new JsonResponse($TabSerie);
         } else {
@@ -103,3 +102,4 @@ class ApiController extends AbstractController
         return new JsonResponse($tabJson, Response::HTTP_OK);
     }
 }
+    

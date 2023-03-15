@@ -35,6 +35,9 @@ class Serie
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'series')]
     private Collection $genres;
 
+    #[ORM\Column]
+    private ?int $nb_like = null;
+
     public function __construct()
     {
         $this->genres = new ArrayCollection();
@@ -125,6 +128,18 @@ class Serie
     public function removeGenre(Genre $genre): self
     {
         $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function getNbLike(): ?int
+    {
+        return $this->nb_like;
+    }
+
+    public function setNbLike(int $nb_like): self
+    {
+        $this->nb_like = $nb_like;
 
         return $this;
     }

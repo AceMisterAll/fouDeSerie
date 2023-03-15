@@ -24,6 +24,17 @@
 					<div class="card-body">
 						<h5 class="card-title">{{ uneserie.titre|upper}}</h5>
 						<p class="card-text">{{ uneserie.resume }}</p>
+						<a href="{{path('app_api_serie_like',{id :uneserie.id})}}" class="js-a-like">
+							 <span class="material-symbols-outlined">thumb_up</span> 
+							<span>{{uneserie.nblike}}</span>
+							<span>likes</span>
+						</a>
+						{# <span class="card-like" onclick="location.href='{{path('app_api_serie_like',{id :uneserie.id})}}';"> 
+							<span class="material-symbols-outlined">thumb_up </span> 
+							<span>{{ uneserie.nblike }}<span>
+							<span>likes</span>
+						</span> #}
+						
 					</div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">{{ uneserie.duree|date("d/m/Y") }}</li>
@@ -33,4 +44,7 @@
 
 			{% endfor %}
 	</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{asset('js/like.js')}}"></script>
 {% endblock %}
