@@ -40,7 +40,9 @@ class SerieController extends AbstractController
     {
         $Repository = $doctrine->getRepository(Serie::class);
         $laSerie = $Repository->find($id);
-        dump($laSerie);
+        if (!$laSerie) {
+            throw $this->createNotFoundException("La série n'existe pas");
+        }
         return $this->render('serie/detailSerie.html.twig', [
             'laSerie' => $laSerie
         ]);
@@ -51,19 +53,30 @@ class SerieController extends AbstractController
     {
         $Repository = $doctrine->getRepository(Serie::class);
         $laSerie = $Repository->find($id);
-        $nblike = $laSerie->getNblike();
-        $nblike = $nblike + 1;
-        $laSerie->setNblike($nblike);
-        $entityManager = $doctrine->getManager();
-        $entityManager->persist($laSerie);
-        $entityManager->flush();
+        try {
+            if(!$laSerie)
+            {
+                throw $this->createNotFoundException('Serie inexistant');
+            }
+            $nblike = $laSerie->getNblike();
+            $nblike = $nblike + 1;
+            $laSerie->setNblike($nblike);
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($laSerie);
+            $entityManager->flush();
 
-        $TabSerie =
+            $TabSerie =
                 [
-                    'id' => $laSerie -> getId(),
-                    'titre' => $laSerie -> getTitre(),
-                    'nb_like' => $laSerie -> getNblike(),
+                    'id' => $laSerie->getId(),
+                    'titre' => $laSerie->getTitre(),
+                    'nb_like' => $laSerie->getNblike(),
                 ];
-        return new JsonResponse($TabSerie, 200);
+        } catch (\Exception $e) {
+            $TabSerie =
+                [
+                    'error' => $e->getMessage()
+                ]; 
+        }
+        return new JsonResponse($TabSerie);
     }
 }
