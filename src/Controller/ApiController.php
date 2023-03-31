@@ -16,7 +16,6 @@ class ApiController extends AbstractController
     public function getListeSeries(PdoFouDeSerie $pdoFouDeSerie): Response
     {
         $lesSeries = $pdoFouDeSerie->getLesSeries();
-        dump($lesSeries);
         $TabSeries = [];
         foreach ($lesSeries as $uneserie) {
             $TabSeries[] = [
@@ -32,7 +31,6 @@ class ApiController extends AbstractController
     {
         $uneSerie = $pdoFouDeSerie->getUneSerie($id);
         if ($uneSerie) {
-            dump($uneSerie);
             $TabSerie = [
                 'id' => $uneSerie['id'],
                 'titre' => $uneSerie['titre'],
