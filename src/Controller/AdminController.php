@@ -17,7 +17,6 @@ class AdminController extends AbstractController
     {
         $Repository = $doctrine->getRepository(Serie::class);
         $lesSeries = $Repository->findAll();
-        dump($lesSeries);
         return $this->render('admin/listSeries.html.twig', [
             'lesSeries' => $lesSeries,
         ]);
@@ -42,7 +41,6 @@ class AdminController extends AbstractController
     public function addSerie(Request $request, ManagerRegistry $Doctrine): Response
     {
         $serie = new Serie();
-        dump($serie);
         $form=$this->createForm(SerieType::class, $serie);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
@@ -52,7 +50,6 @@ class AdminController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_series');
         }
-        dump($serie);
         return $this->render('admin/addSerie.html.twig', [
             'form' => $form->createView(),
         ]);

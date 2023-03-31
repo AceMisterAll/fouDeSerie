@@ -29,7 +29,6 @@ class SerieController extends AbstractController
     {
         $Repository = $doctrine->getRepository(Serie::class);
         $lesSeries = $Repository->findAll();
-        dump($lesSeries);
         return $this->render('serie/lesSeries.html.twig', [
             'lesSeries' => $lesSeries
         ]);
