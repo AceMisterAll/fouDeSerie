@@ -26,10 +26,10 @@ services:
 #    App\Service\PdoFouDeSerie:
 #        alias: 'service_pdo'
 #
-##    service_pdo:
-##        class: App\Service\PdoFouDeSerie
-##        arguments:
-##            $server: 'mysql:host=127.0.0.1:3306'
-##            $bdd: 'dbname=bdfoudeseries'
-##            $user: 'root'
-##            $mdp: ''
+#    service_pdo:
+#        class: App\Service\PdoFouDeSerie
+#        arguments:
+#            $server: 'mysql:host=127.0.0.1:3306'
+#            $bdd: 'dbname=bdfoudeseries'
+#            $user: 'root'
+#            $mdp: ''
