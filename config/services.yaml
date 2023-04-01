@@ -23,13 +23,13 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Service\PdoFouDeSerie:
-        alias: 'service_pdo'
-
-    service_pdo:
-        class: App\Service\PdoFouDeSerie
-        arguments:
-            $server: 'mysql:host=192.168.4.1:3306'
-            $bdd: 'dbname=bdachiron1'
-            $user: 'sqlachiron'
-            $mdp: 'savary'
+#    App\Service\PdoFouDeSerie:
+#        alias: 'service_pdo'
+#
+#    service_pdo:
+#        class: App\Service\PdoFouDeSerie
+#        arguments:
+#            $server: 'mysql:host=127.0.0.1:3306'
+#            $bdd: 'dbname=bdHackathon'
+#            $user: 'root'
+#            $mdp: ''
