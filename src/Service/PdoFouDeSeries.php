@@ -3,7 +3,7 @@ namespace App\Service;
 
 use PDO;
 
-class PdoFouDeSerie {
+class PdoFouDeSeries {
 
     private static $monPdo;
     public function __construct($server, $bdd, $user, $mdp) {
